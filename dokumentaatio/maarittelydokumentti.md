@@ -9,7 +9,7 @@ Hallitsen myös javaa hyvin vertaisarviointeja ajatellen.
 
 Toteutetaan kaksi eri pakkausalgoritmia (näillä näkymin lempel-ziv ja huffman) ja vertaillaan niiden pakkaustehokkuuden eroja.
 
-Käyttäjä syöttää ohjelmalle tiedoston, joka muunnetaan biteiksi ja pakataan pienempään kokoon valitulla algoritmilla.
+Käyttäjä syöttää ohjelmalle tiedoston, joka muunnetaan merkkijonoksi ja pakataan pienempään kokoon valitulla algoritmilla.
 Käyttäjä voi purkaa pakatun tiedoston syöttämällä sen ohjelmalle.
 
 Tavoitteena saada syöte pakattua keskimäärin noin puoleen alkuperäisestä koosta.
