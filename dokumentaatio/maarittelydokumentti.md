@@ -17,8 +17,7 @@ Tavoitteena saada syöte pakattua keskimäärin noin puoleen alkuperäisestä ko
 ## Arkkitehtuuri
 
 Pientä alustavaa luonnostelmaa
-<img src="https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/kuvat/arkkitehtuuriluonnos.png">
-
+![kuva](https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/kuvat/arkkitehtuuriluonnos.png)
 
 ## Opinto-ohjelma
 
