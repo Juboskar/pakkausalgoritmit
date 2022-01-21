@@ -1,4 +1,5 @@
 .idea/
 app/src/__pycache__
 app/src/ui/__pycache__
+app/src/tests/__pycache__
 app/.coverage
