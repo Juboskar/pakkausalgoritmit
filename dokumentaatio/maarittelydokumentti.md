@@ -14,6 +14,12 @@ Käyttäjä voi purkaa pakatun tiedoston syöttämällä sen ohjelmalle.
 
 Tavoitteena saada syöte pakattua keskimäärin noin puoleen alkuperäisestä koosta.
 
+## Arkkitehtuuri
+
+Pientä alustavaa luonnostelmaa
+<img src="https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/kuvat/arkkitehtuuriluonnos.png">
+
+
 ## Opinto-ohjelma
 
 Tietojenkäsittelytieteen kandidaatti (TKT)
