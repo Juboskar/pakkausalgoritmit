@@ -1,6 +1,7 @@
 # Pakkausalgoritmisovellus
 
 ![Github Actions](https://github.com/Juboskar/pakkausalgoritmit/workflows/CI/badge.svg)
+
 [Määrittelydokumentti](https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/maarittelydokumentti.md)
 
 ## Viikkoraportit
