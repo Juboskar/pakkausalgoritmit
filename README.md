@@ -1,6 +1,6 @@
 # Pakkausalgoritmisovellus
 
-![codecov](https://codecov.io/gh/Juboskar/pakkausalgoritmit)
+![codecov](https://codecov.io/gh/Juboskar/pakkausalgoritmit/branch/main/graph/badge.svg?token=HDJKUELB4H)](https://codecov.io/gh/Juboskar/pakkausalgoritmit)
 
 ![Github Actions](https://github.com/Juboskar/pakkausalgoritmit/workflows/CI/badge.svg)
 
