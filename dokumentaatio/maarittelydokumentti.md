@@ -1,9 +1,9 @@
 # Määrittelydokumentti
 
-Ohjelma toteutetaan pythonin versiolla 3.8.5. 
+Ohjelma toteutetaan pythonin versiolla 3.8.5.
 Käyttöliittymä ja dokumentaatio totetutetaan suomeksi.
 
-Hallitsen myös javaa vertaisarviointeja ajatellen.
+Hallitsen myös javaa hyvin vertaisarviointeja ajatellen.
 
 ## Sovelluksen vaatimukset
 
