@@ -1,6 +1,6 @@
 # Määrittelydokumentti
 
-Ohjelma toteutetaan pythonin versiolla 3.8.5.
+Ohjelma olisi aikomus toteuttaa pythonin versiolla 3.8.5 ja riippuvuuksien hallinta (mm testikirjastot) Poetryllä.
 Käyttöliittymä ja dokumentaatio totetutetaan suomeksi.
 
 Hallitsen myös javaa hyvin vertaisarviointeja ajatellen.
