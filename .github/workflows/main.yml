@@ -27,5 +27,7 @@ jobs:
         working-directory: app
       - name: Coverage report
         run: poetry run coverage xml
+        working-directory: app
       - name: Coverage report to Codecov
         run: bash <(curl -s https://codecov.io/bash)
+        working-directory: app
