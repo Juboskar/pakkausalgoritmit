@@ -1,4 +1,5 @@
-from tkinter import Tk, ttk, filedialog
+from tkinter import ttk, filedialog, StringVar
+import services.compressor as compressor
 
 
 class UI:
@@ -6,13 +7,26 @@ class UI:
 
     def __init__(self, root):
         self._root = root
-        self.filename = None
+        self.filename = StringVar()
 
     def start(self):
-        label = ttk.Label(master=self._root, text="Valitse pakattava tiedosto")
-        button = ttk.Button(self._root, text='Open', command=self.upload_action)
-        label.pack()
-        button.pack()
+        label1 = ttk.Label(master=self._root, text="Valitse pakattava tiedosto")
+        button1 = ttk.Button(self._root, text='Avaa', command=self.upload_action)
+        button2 = ttk.Button(self._root, text='pakkaa (lempel-ziv)', command=self.compress_lzv_action)
+        button3 = ttk.Button(self._root, text='pakkaa (huffman)', command=self.compress_huff_action)
+        label2 = ttk.Label(master=self._root, textvariable=self.filename)
 
-    def upload_action(self, event=None):
-        self.filename = filedialog.askopenfilename()
+        label1.pack()
+        button1.pack()
+        label2.pack()
+        button2.pack()
+        button3.pack()
+
+    def upload_action(self):
+        self.filename.set(filedialog.askopenfilename())
+
+    def compress_lzv_action(self):
+        compressor.compress_file(self.filename.get(), "lzv")
+
+    def compress_huff_action(self):
+        compressor.compress_file(self.filename.get(), "huff")
