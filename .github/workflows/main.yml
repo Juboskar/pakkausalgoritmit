@@ -18,16 +18,11 @@ jobs:
           python-version: 3.8
       - name: Install Poetry
         run: pip install poetry
-        working-directory: app
       - name: Install dependencies
         run: poetry install
-        working-directory: app
       - name: Run tests
         run: poetry run coverage run --branch -m pytest
-        working-directory: app
       - name: Coverage report
         run: poetry run coverage xml
-        working-directory: app
       - name: Coverage report to Codecov
         run: bash <(curl -s https://codecov.io/bash)
-        working-directory: app
