@@ -26,7 +26,7 @@ class UI:
         self.filename.set(filedialog.askopenfilename())
 
     def compress_lzv_action(self):
-        compressor.compress_file(self.filename.get(), "lzv")
+        compressor.compress_file(self.filename.get(), "lz")
 
     def compress_huff_action(self):
         compressor.compress_file(self.filename.get(), "huff")
