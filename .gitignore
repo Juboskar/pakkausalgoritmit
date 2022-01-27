@@ -1,4 +1,5 @@
 .idea/
-app/.pytest_cache/
+.pytest_cache/
 **/__pycache__/
-app/.coverage
+src/.coverage
+htmlcov

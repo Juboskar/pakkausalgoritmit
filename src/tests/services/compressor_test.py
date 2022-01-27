@@ -1,6 +1,6 @@
 import unittest
 
 
-class TestService(unittest.TestCase):
+class TestCompressor(unittest.TestCase):
     def test_foo(self):
         self.assertTrue(True)
