@@ -11,9 +11,12 @@ class CompressingAlgorithm:
 
 class LzAlgorithm(CompressingAlgorithm):
     def __init__(self):
-        super.__init__()
+        super().__init__()
+
+    def compress(self, string):
+        print(string)
 
 
 class HuffmanAlgorithm(CompressingAlgorithm):
     def __init__(self):
-        super.__init__()
+        super().__init__()
