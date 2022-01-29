@@ -14,5 +14,10 @@ class Compressor:
             elif selected_algorithm == "huff":
                 self.huff.compress(file.read())
 
-    def return_decompressed(self, packed_file):
-        pass
+    def decompress_file(self, packed_file, selected_algorithm):
+        """Avaa pakatun tiedoston ja antaa sisällön merkkijonona valitulla algoritmilla (lz/huff) purkavalle luokalle"""
+        with open(packed_file) as file:
+            if selected_algorithm == "lz":
+                self.lz.compress(file.read())
+            elif selected_algorithm == "huff":
+                self.huff.decompress(file.read())
