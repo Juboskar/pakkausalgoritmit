@@ -18,6 +18,6 @@ class Compressor:
         """Avaa pakatun tiedoston ja antaa sisällön merkkijonona valitulla algoritmilla (lz/huff) purkavalle luokalle"""
         with open(packed_file) as file:
             if selected_algorithm == "lz":
-                self.lz.compress(file.read())
+                self.lz.decompress(file.read())
             elif selected_algorithm == "huff":
                 self.huff.decompress(file.read())
