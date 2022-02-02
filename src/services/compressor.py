@@ -1,23 +1,28 @@
+"Tekstitiedostot merkkijonona algoritmeille siirtävä koodi"
 from services.compress_algorithms import LzAlgorithm, HuffmanAlgorithm
 
 
 class Compressor:
-    def __init__(self, lz=LzAlgorithm(), huff=HuffmanAlgorithm()):
-        self.lz = lz
+    "Tekstitiedostot merkkijonona algoritmeille siirtävä luokka"
+
+    def __init__(self, lempel_ziv=LzAlgorithm(), huff=HuffmanAlgorithm()):
+        self.lempel_ziv = lempel_ziv
         self.huff = huff
 
-    def compress_file(self, file, selected_algorithm):
-        """Avaa tiedoston ja antaa sisällön merkkijonona valitulla algoritmilla (lz/huff) pakkaavalle luokalle"""
-        with open(file) as file:
+    def compress_file(self, uncompressed, selected_algorithm):
+        """Avaa tiedoston ja antaa sisällön merkkijonona valitulla algoritmilla
+        (lz/huff) pakkaavalle luokalle"""
+        with open(uncompressed, "r") as uncompressed_file:
             if selected_algorithm == "lz":
-                self.lz.compress(file.read())
+                self.lempel_ziv.compress(uncompressed_file.read())
             elif selected_algorithm == "huff":
-                self.huff.compress(file.read())
+                self.huff.compress(uncompressed_file.read())
 
-    def decompress_file(self, packed_file, selected_algorithm):
-        """Avaa pakatun tiedoston ja antaa sisällön merkkijonona valitulla algoritmilla (lz/huff) purkavalle luokalle"""
-        with open(packed_file) as file:
+    def decompress_file(self, compressed, selected_algorithm):
+        """Avaa pakatun tiedoston ja antaa sisällön merkkijonona valitulla algoritmilla
+        (lz/huff) purkavalle luokalle"""
+        with open(compressed, "r") as compressed_file:
             if selected_algorithm == "lz":
-                self.lz.decompress(file.read())
+                self.lempel_ziv.decompress(compressed_file.read())
             elif selected_algorithm == "huff":
-                self.huff.decompress(file.read())
+                self.huff.decompress(compressed_file.read())

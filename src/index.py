@@ -1,8 +1,10 @@
-from ui.ui import UI
+"Sovelluksen käynnistävä koodi"
 from tkinter import Tk
+from ui.ui import UI
 
 
 def main():
+    "Käyttöliittymän käynnistävä funktio"
     window = Tk()
     window.title('Pakkaamo')
     ui = UI(window)
