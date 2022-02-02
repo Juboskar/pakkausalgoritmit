@@ -12,7 +12,7 @@ class Compressor:
     def compress_file(self, uncompressed, selected_algorithm):
         """Avaa tiedoston ja antaa sisällön merkkijonona valitulla algoritmilla
         (lz/huff) pakkaavalle luokalle"""
-        with open(uncompressed, "r") as uncompressed_file:
+        with open(uncompressed, "r", encoding="utf-8") as uncompressed_file:
             if selected_algorithm == "lz":
                 self.lempel_ziv.compress(uncompressed_file.read())
             elif selected_algorithm == "huff":
@@ -21,7 +21,7 @@ class Compressor:
     def decompress_file(self, compressed, selected_algorithm):
         """Avaa pakatun tiedoston ja antaa sisällön merkkijonona valitulla algoritmilla
         (lz/huff) purkavalle luokalle"""
-        with open(compressed, "r") as compressed_file:
+        with open(compressed, "r", encoding="utf-8") as compressed_file:
             if selected_algorithm == "lz":
                 self.lempel_ziv.decompress(compressed_file.read())
             elif selected_algorithm == "huff":
