@@ -1,32 +1,27 @@
 "Lempel-Ziv ja Huffman -algoritmit toteuttava koodi"
 
 
-class CompressingAlgorithm:
-    "Algoritmirajapinta"
+class LzAlgorithm:
+    "Lempel-Ziv -algoritmin toteuttava luokka"
 
     def __init__(self):
         pass
 
-    def compress(self, string):
-        "Abstrakti pakkausfunktio"
-
-    def decompress(self, string):
-        "Abstrakti pakkausfunktio"
-
-
-class LzAlgorithm(CompressingAlgorithm):
-    "Lempel-Ziv -algoritmin toteuttava luokka"
-
-    def __init__(self):
-        super().__init__()
-
-    def compress(self, string):
+    def compress(self, string: str):
         "pakkaa lempel-ziv algoritmilla"
-        print(string)
+
+    def decompress(self, string: str):
+        "purkaa lempel-ziv algoritmilla pakatun tekstin"
 
 
-class HuffmanAlgorithm(CompressingAlgorithm):
+class HuffmanAlgorithm:
     "Lempel-Ziv -algoritmin toteuttava luokka"
 
     def __init__(self):
-        super().__init__()
+        pass
+
+    def compress(self, string: str):
+        "pakkaa lempel-ziv algoritmilla"
+
+    def decompress(self, string: str):
+        "purkaa lempel-ziv algoritmilla pakatun tekstin"
