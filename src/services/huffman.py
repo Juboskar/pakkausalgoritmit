@@ -38,6 +38,7 @@ class HuffmanAlgorithm:
         self.tree = trees[0]
 
     def bit_values(self):
+        "tallettaa merkkien huffman-koodatut bittiarvot ja palauttaa sanakirjana"
         bit_values = {}
 
         bits = ""
@@ -57,8 +58,7 @@ class HuffmanAlgorithm:
         "pakkaa huffman algoritmilla"
         self.build_tree(string)
         values = self.bit_values()
-        compressed = ''.join([values[i] for i in string])
-        print(compressed)
+        print(values)
 
     # TODO: testit!
 
