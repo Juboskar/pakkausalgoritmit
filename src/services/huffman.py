@@ -1,4 +1,4 @@
-"Huffman -algoritmin toteuttava koodi"
+"Huffman-algoritmin toteuttava koodi"
 
 
 class Node:
@@ -11,9 +11,11 @@ class Node:
         self.right = right
 
     def __lt__(self, comparable):
+        "pienimmän arvon omaavan solmun löytämistä varten"
         return self.value < comparable.value
 
     def __str__(self):
+        "debuggaamista helpottava tulostus"
         return f"Node: {self.symbol}: {self.value}, ({self.left}, {self.right})"
 
 
@@ -28,14 +30,13 @@ class HuffmanAlgorithm:
         count = {}
         for i in string:
             count[i] = 1 if i not in count else count[i] + 1
-        forest = [Node(symbol, value, None, None) for symbol, value in count.items()]
-        min_value_1 = forest.pop(forest.index(min(forest)))
-        min_value_2 = forest.pop(forest.index(min(forest)))
-        print(min_value_1)
-        print(min_value_2)
-
-        # todo: tallenna puu, myös tallenna purkua varten tiedostoon compressorissa sitten myös
-        self.tree = None
+        trees = [Node(symbol, value, None, None) for symbol, value in count.items()]
+        while len(trees) > 1:
+            min_node_1 = trees.pop(trees.index(min(trees)))
+            min_node_2 = trees.pop(trees.index(min(trees)))
+            trees.append(Node(None, min_node_1.value + min_node_2.value, min_node_1, min_node_2))
+        self.tree = trees[0]
+        print(self.tree)
 
     def decompress(self, string: str):
         "purkaa huffman algoritmilla pakatun tekstin"
