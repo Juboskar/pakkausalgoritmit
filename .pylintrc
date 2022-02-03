@@ -284,7 +284,7 @@ single-line-class-stmt=no
 # else.
 single-line-if-stmt=no
 
-good-names=ui
+good-names=ui, i
 
 [LOGGING]
 

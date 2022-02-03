@@ -1,5 +1,6 @@
 "Tekstitiedostot merkkijonona algoritmeille siirtävä koodi"
-from services.compress_algorithms import LzAlgorithm, HuffmanAlgorithm
+from services.huffman import HuffmanAlgorithm
+from services.lempel_ziv import LzAlgorithm
 
 
 class Compressor:
