@@ -204,6 +204,7 @@ good-names=i,
            k,
            ex,
            Run,
+           ui,
            _
 
 # Good variable names regexes, separated by a comma. If names match any regex,
@@ -283,8 +284,6 @@ single-line-class-stmt=no
 # Allow the body of an if to be on the same line as the test if there is no
 # else.
 single-line-if-stmt=no
-
-good-names=ui, i
 
 [LOGGING]
 
