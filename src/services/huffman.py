@@ -28,7 +28,7 @@ class HuffmanAlgorithm:
         count = {}
         for i in string:
             count[i] = 1 if i not in count else count[i] + 1
-        forest = [Node(i, count[i], None, None) for i in count]
+        forest = [Node(symbol, value, None, None) for symbol, value in count]
         min_value_1 = forest.pop(forest.index(min(forest)))
         min_value_2 = forest.pop(forest.index(min(forest)))
         print(min_value_1)
