@@ -15,7 +15,7 @@ class Node:
         return self.value < comparable.value
 
     def __str__(self):
-        "debuggaamista helpottava tulostus"
+        "debuggaamista helpottava str muoto"
         return f"Node: {self.symbol}: {self.value}, ({self.left}, {self.right})"
 
 
@@ -25,8 +25,8 @@ class HuffmanAlgorithm:
     def __init__(self):
         self.tree = None
 
-    def compress(self, string: str):
-        "pakkaa huffman algoritmilla"
+    def build_tree(self, string: str):
+        "rakentaa huffman-puun"
         count = {}
         for i in string:
             count[i] = 1 if i not in count else count[i] + 1
@@ -36,7 +36,31 @@ class HuffmanAlgorithm:
             min_node_2 = trees.pop(trees.index(min(trees)))
             trees.append(Node(None, min_node_1.value + min_node_2.value, min_node_1, min_node_2))
         self.tree = trees[0]
-        print(self.tree)
+
+    def bit_values(self):
+        bit_values = {}
+
+        bits = ""
+        node = self.tree
+
+        def recursively_check_codes(tree_node, bit_string):
+            if tree_node.symbol is not None:
+                bit_values[tree_node.symbol] = bit_string
+            else:
+                recursively_check_codes(tree_node.right, bit_string + "0")
+                recursively_check_codes(tree_node.left, bit_string + "1")
+
+        recursively_check_codes(node, bits)
+        return bit_values
+
+    def compress(self, string: str):
+        "pakkaa huffman algoritmilla"
+        self.build_tree(string)
+        values = self.bit_values()
+        compressed = ''.join([values[i] for i in string])
+        print(compressed)
+
+    # TODO: testit!
 
     def decompress(self, string: str):
         "purkaa huffman algoritmilla pakatun tekstin"
