@@ -28,13 +28,13 @@ class HuffmanAlgorithm:
         count = {}
         for i in string:
             count[i] = 1 if i not in count else count[i] + 1
-        forest = [Node(symbol, value, None, None) for symbol, value in count]
+        forest = [Node(symbol, value, None, None) for symbol, value in count.items()]
         min_value_1 = forest.pop(forest.index(min(forest)))
         min_value_2 = forest.pop(forest.index(min(forest)))
         print(min_value_1)
         print(min_value_2)
 
-        # todo: tallenna puu, myös tallenna purkua varten tiedostoon compressorissa sitten myös(?)
+        # todo: tallenna puu, myös tallenna purkua varten tiedostoon compressorissa sitten myös
         self.tree = None
 
     def decompress(self, string: str):
