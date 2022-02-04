@@ -27,7 +27,6 @@ class HuffmanAlgorithm:
 
     def build_tree(self, string: str):
         "rakentaa huffman-puun"
-        string = "AAAAABCCCDD"
         count = {}
         for i in string:
             count[i] = 1 if i not in count else count[i] + 1
@@ -61,7 +60,6 @@ class HuffmanAlgorithm:
         values = self.bit_values()
         print(values)
 
-    # TODO: testit!
 
     def decompress(self, string: str):
         "purkaa huffman algoritmilla pakatun tekstin"
