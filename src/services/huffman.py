@@ -27,6 +27,7 @@ class HuffmanAlgorithm:
 
     def build_tree(self, string: str):
         "rakentaa huffman-puun"
+        string = "AAAAABCCCDD"
         count = {}
         for i in string:
             count[i] = 1 if i not in count else count[i] + 1
@@ -38,7 +39,7 @@ class HuffmanAlgorithm:
         self.tree = trees[0]
 
     def bit_values(self):
-        "tallettaa merkkien huffman-koodatut bittiarvot ja palauttaa sanakirjana"
+        "etsii merkkien huffman-koodatut bittiarvot ja palauttaa sanakirjana"
         bit_values = {}
 
         bits = ""
