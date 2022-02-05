@@ -58,7 +58,6 @@ class HuffmanAlgorithm:
         "pakkaa huffman algoritmilla"
         self.build_tree(string)
         values = self.bit_values()
-        print(values)
 
 
     def decompress(self, string: str):
