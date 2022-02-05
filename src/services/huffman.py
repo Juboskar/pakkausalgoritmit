@@ -57,7 +57,8 @@ class HuffmanAlgorithm:
     def compress(self, string: str):
         "pakkaa huffman algoritmilla"
         self.build_tree(string)
-        values = self.bit_values()
+        # values = self.bit_values()
+        # todo palauttaa tallennettavaksi
 
 
     def decompress(self, string: str):
