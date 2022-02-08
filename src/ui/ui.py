@@ -19,8 +19,8 @@ class UI:
         btn2 = ttk.Button(self._root, text='pakkaa (lempel-ziv)', command=self.compress_lz_action)
         btn3 = ttk.Button(self._root, text='pakkaa (huffman)', command=self.compress_huff_action)
         label2 = ttk.Label(master=self._root, textvariable=self.filename)
-        btn4 = ttk.Button(self._root, text='pura (lempel-ziv)')
-        btn5 = ttk.Button(self._root, text='pura (huffman)')
+        btn4 = ttk.Button(self._root, text='pura (lempel-ziv)', command=self.compress_lz_action)
+        btn5 = ttk.Button(self._root, text='pura (huffman)', command=self.decompress_huff_action)
 
         label1.pack()
         btn1.pack()
@@ -41,3 +41,11 @@ class UI:
     def compress_huff_action(self):
         "Antaa valitun tiedoston pakattavaksi Huffmanin algoritmilla"
         self.compressor.compress_file(self.filename.get(), "huff")
+
+    def decompress_lz_action(self):
+        "Antaa valitun tiedoston pakattavaksi Lempel-Ziv algoritmilla"
+        self.compressor.decompress_file(self.filename.get(), "lz")
+
+    def decompress_huff_action(self):
+        "Antaa valitun tiedoston pakattavaksi Huffmanin algoritmilla"
+        self.compressor.decompress_file(self.filename.get(), "huff")

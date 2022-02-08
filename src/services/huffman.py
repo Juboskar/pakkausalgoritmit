@@ -57,9 +57,33 @@ class HuffmanAlgorithm:
     def compress(self, string: str):
         "pakkaa huffman algoritmilla"
         self.build_tree(string)
-        # values = self.bit_values()
+        values = self.bit_values()
+
+        """" todo puun tallennus toteuttamatta vielä
+            1  huffman puun pituus (n)
+            n puu
+            1 koodatun tekstin pituus (m) | edit: tai oikeastaan off kannattanee tallentaa
+            m data
+        """
+        # seuraava pätkä on PAHASTI kesken ja lähinnä sandbox testailua
+
+        binary = ''.join([values[i] for i in string])
+        print(binary)
+        n = len(binary)
+        off = 8 - (n % 8)
+        binary += off * '0'
+        integer_values = [off]
+        for i in range(0, n, 8):
+            integer_values.append(int(binary[i:i + 8], 2))
+
+        return bytearray(integer_values)
+        #
         # todo palauttaa tallennettavaksi
 
-
-    def decompress(self, string: str):
+    def decompress(self, bytes: bytearray):
         "purkaa huffman algoritmilla pakatun tekstin"
+        s = ''
+        off = list(bytes)[0]
+        for i in list(bytes)[1:]:
+            s += "{0:b}".format(i).zfill(8)
+        binary = s[:-off]
