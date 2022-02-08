@@ -1,4 +1,5 @@
 "Huffman-algoritmin toteuttava koodi"
+import ast
 import json
 
 
@@ -81,19 +82,26 @@ class HuffmanAlgorithm:
         # str(values).encode('ascii') olkoon väliaikainen,
         # perehdytään myöhemmin onko järkevämpiä tapoja pakata sanakirja
 
-        m = len(str(values))
-        return bytearray([m]) + bytearray(str(values).encode('ascii')) + bytearray(integer_values)
-        #
-        # todo palauttaa tallennettavaksi
+        m = len(bytearray(str(values).encode('ascii')))
+        x = m.to_bytes(4, 'big')
+        print(x)
+        return x + bytearray(str(values).encode('ascii')) + bytearray(integer_values)
 
     def decompress(self, bytes: bytearray):
+        print(bytes)
         "purkaa huffman algoritmilla pakatun tekstin"
         bytes_to_int = list(bytes)
         print(bytes_to_int)
-        m = bytes_to_int[0]
+        print(bytes[0:4])
+        m = int.from_bytes(bytes[0:4], 'big')
 
         # muunnetaan dictionaryksi
-        values = json.loads(bytes[1:m + 1].decode('ascii').replace("\'", "\""))
+        s = ''
+        for i in map(chr, bytes[4:m + 4]):  # (+5 koska 4 alusta)
+            s += i
+        print(s)
+
+        values = json.loads(s.replace("\'", "\""))
 
         off = bytes_to_int[m + 1]
         print(off)
