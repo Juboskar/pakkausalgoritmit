@@ -1,5 +1,4 @@
 "Huffman-algoritmin toteuttava koodi"
-import ast
 import json
 
 
@@ -68,7 +67,7 @@ class HuffmanAlgorithm:
             1 koodatun tekstin pituus (m) | edit: tai oikeastaan off kannattanee tallentaa
             m data
         """
-        # seuraava pätkä on PAHASTI kesken ja lähinnä sandbox testailua
+        # seuraava pätkä on PAHASTI kesken
 
         binary = ''.join([values[i] for i in string])
         print(binary)
@@ -79,7 +78,6 @@ class HuffmanAlgorithm:
         for i in range(0, n, 8):
             integer_values.append(int(binary[i:i + 8], 2))
 
-        # str(values).encode('ascii') olkoon väliaikainen,
         # perehdytään myöhemmin onko järkevämpiä tapoja pakata sanakirja
 
         m = len(bytearray(str(values).encode('ascii')))
@@ -103,10 +101,10 @@ class HuffmanAlgorithm:
 
         values = json.loads(s.replace("\'", "\""))
 
-        off = bytes_to_int[m + 1]
+        off = bytes_to_int[m + 4]
         print(off)
         s = ''
-        for i in bytes_to_int[m + 2:]:
+        for i in bytes_to_int[m + 5:]:
             s += "{0:b}".format(i).zfill(8)
         binary = s if off == 0 else s[:-off]
         print(binary)
