@@ -23,15 +23,19 @@ class Compressor:
 
     def save(self, bytes):
         """Tallentaa binääritiedostona pakatut"""
-        # todo
         with open(self.filename + ".bin", "wb") as compressed:
             compressed.write(bytes)
 
     def decompress_file(self, compressed, selected_algorithm):
+        self.filename = compressed
         """Avaa pakatun tiedoston ja antaa sisällön merkkijonona valitulla algoritmilla
         (lz/huff) purkavalle luokalle"""
         with open(compressed, "rb") as compressed_file:
             if selected_algorithm == "lz":
                 self.lempel_ziv.decompress(compressed_file.read())
             elif selected_algorithm == "huff":
-                self.huff.decompress(compressed_file.read())
+                self.save_decompressed(self.huff.decompress(compressed_file.read()))
+
+    def save_decompressed(self, string):
+        with open(self.filename + "_decompressed.txt", "w", encoding="utf-8") as decompressed_file:
+            decompressed_file.write(string)

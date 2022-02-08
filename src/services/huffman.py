@@ -1,4 +1,5 @@
 "Huffman-algoritmin toteuttava koodi"
+import json
 
 
 class Node:
@@ -58,6 +59,7 @@ class HuffmanAlgorithm:
         "pakkaa huffman algoritmilla"
         self.build_tree(string)
         values = self.bit_values()
+        print(values)
 
         """" todo puun tallennus toteuttamatta vielä
             1  huffman puun pituus (n)
@@ -70,20 +72,43 @@ class HuffmanAlgorithm:
         binary = ''.join([values[i] for i in string])
         print(binary)
         n = len(binary)
-        off = 8 - (n % 8)
+        off = 0 if 8 - (n % 8) == 8 else 8 - (n % 8)
         binary += off * '0'
         integer_values = [off]
         for i in range(0, n, 8):
             integer_values.append(int(binary[i:i + 8], 2))
 
-        return bytearray(integer_values)
+        # str(values).encode('ascii') olkoon väliaikainen,
+        # perehdytään myöhemmin onko järkevämpiä tapoja pakata sanakirja
+
+        m = len(str(values))
+        return bytearray([m]) + bytearray(str(values).encode('ascii')) + bytearray(integer_values)
         #
         # todo palauttaa tallennettavaksi
 
     def decompress(self, bytes: bytearray):
         "purkaa huffman algoritmilla pakatun tekstin"
+        bytes_to_int = list(bytes)
+        print(bytes_to_int)
+        m = bytes_to_int[0]
+
+        # muunnetaan dictionaryksi
+        values = json.loads(bytes[1:m + 1].decode('ascii').replace("\'", "\""))
+
+        off = bytes_to_int[m + 1]
+        print(off)
         s = ''
-        off = list(bytes)[0]
-        for i in list(bytes)[1:]:
+        for i in bytes_to_int[m + 2:]:
             s += "{0:b}".format(i).zfill(8)
-        binary = s[:-off]
+        binary = s if off == 0 else s[:-off]
+        print(binary)
+
+        string = ''
+        c = ''
+        for i in binary:
+            c += i
+            if c in values.values():
+                string += list(values.keys())[list(values.values()).index(c)]
+                c = ''
+
+        return string
