@@ -20,13 +20,13 @@ class Node:
         return f"Node: {self.symbol}: {self.value}, ({self.left}, {self.right})"
 
 
-class HuffmanAlgorithm:
-    "Huffman -algoritmin toteuttava luokka"
+class HuffmanCompressor:
+    "Huffman pakkauksen toteuttava luokka"
 
     def __init__(self):
-        self.tree = None
+        self.__tree = None
 
-    def build_tree(self, string: str):
+    def __build_tree(self, string: str):
         "rakentaa huffman-puun"
         count = {}
         for i in string:
@@ -36,14 +36,14 @@ class HuffmanAlgorithm:
             min_node_1 = trees.pop(trees.index(min(trees)))
             min_node_2 = trees.pop(trees.index(min(trees)))
             trees.append(Node(None, min_node_1.value + min_node_2.value, min_node_1, min_node_2))
-        self.tree = trees[0]
+        self.__tree = trees[0]
 
-    def bit_values(self):
+    def __calculate_bit_values(self):
         "etsii merkkien huffman-koodatut bittiarvot ja palauttaa sanakirjana"
         bit_values = {}
 
         bits = ""
-        node = self.tree
+        node = self.__tree
 
         def recursively_check_codes(tree_node, bit_string):
             if tree_node.symbol is not None:
@@ -57,20 +57,10 @@ class HuffmanAlgorithm:
 
     def compress(self, string: str):
         "pakkaa huffman algoritmilla"
-        self.build_tree(string)
-        values = self.bit_values()
-        print(values)
-
-        """" todo puun tallennus toteuttamatta vielä
-            1  huffman puun pituus (n)
-            n puu
-            1 koodatun tekstin pituus (m) | edit: tai oikeastaan off kannattanee tallentaa
-            m data
-        """
-        # seuraava pätkä on PAHASTI kesken
+        self.__build_tree(string)
+        values = self.__calculate_bit_values()
 
         binary = ''.join([values[i] for i in string])
-        print(binary)
         n = len(binary)
         off = 0 if 8 - (n % 8) == 8 else 8 - (n % 8)
         binary += off * '0'
@@ -78,36 +68,30 @@ class HuffmanAlgorithm:
         for i in range(0, n, 8):
             integer_values.append(int(binary[i:i + 8], 2))
 
-        # perehdytään myöhemmin onko järkevämpiä tapoja pakata sanakirja
-
-        m = len(bytearray(str(values).encode('ascii')))
-        x = m.to_bytes(4, 'big')
-        print(x)
+        encoded_values = bytearray(str(values).encode('ascii'))
+        x = len(encoded_values).to_bytes(4, 'big')
         return x + bytearray(str(values).encode('ascii')) + bytearray(integer_values)
 
-    def decompress(self, bytes: bytearray):
-        print(bytes)
+
+class HuffmanDecompressor:
+    "Huffman -algoritmin toteuttava luokka"
+
+    def __init__(self):
+        self.values_length = None
+
+    def __calculate_values(self, bytes_array: bytearray):
+        return json.loads(''.join(map(chr, bytes_array[4:self.values_length + 4])).replace("\'", "\""))
+
+    def decompress(self, bytes_array: bytearray):
         "purkaa huffman algoritmilla pakatun tekstin"
-        bytes_to_int = list(bytes)
-        print(bytes_to_int)
-        print(bytes[0:4])
-        m = int.from_bytes(bytes[0:4], 'big')
+        self.values_length = int.from_bytes(bytes_array[0:4], 'big')
+        values = self.__calculate_values(bytes_array)
 
-        # muunnetaan dictionaryksi
-        s = ''
-        for i in map(chr, bytes[4:m + 4]):  # (+5 koska 4 alusta)
-            s += i
-        print(s)
+        bytes_int_values = list(bytes_array)
+        off = bytes_int_values[self.values_length + 4]
+        s = "".join(map(lambda x: "{0:b}".format(x).zfill(8), bytes_int_values[self.values_length + 5:]))
 
-        values = json.loads(s.replace("\'", "\""))
-
-        off = bytes_to_int[m + 4]
-        print(off)
-        s = ''
-        for i in bytes_to_int[m + 5:]:
-            s += "{0:b}".format(i).zfill(8)
-        binary = s if off == 0 else s[:-off]
-        print(binary)
+        binary = s if off == 0 else s[:-off]  # en ymmärrä miten s[:-0] toimii
 
         string = ''
         c = ''

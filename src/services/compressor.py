@@ -1,14 +1,15 @@
 "Tekstitiedostot merkkijonona algoritmeille siirtävä koodi"
-from services.huffman import HuffmanAlgorithm
+from services.huffman import HuffmanCompressor, HuffmanDecompressor
 from services.lempel_ziv import LzAlgorithm
 
 
 class Compressor:
     "Tekstitiedostot merkkijonona algoritmeille siirtävä luokka"
 
-    def __init__(self, lempel_ziv=LzAlgorithm(), huff=HuffmanAlgorithm()):
+    def __init__(self, lempel_ziv=LzAlgorithm(), huff=HuffmanCompressor(), huff_decompressor=HuffmanDecompressor()):
         self.lempel_ziv = lempel_ziv
         self.huff = huff
+        self.huff_decompressor = huff_decompressor
         self.filename = None
 
     def compress_file(self, uncompressed, selected_algorithm):
@@ -34,7 +35,7 @@ class Compressor:
             if selected_algorithm == "lz":
                 self.lempel_ziv.decompress(compressed_file.read())
             elif selected_algorithm == "huff":
-                self.save_decompressed(self.huff.decompress(compressed_file.read()))
+                self.save_decompressed(self.huff_decompressor.decompress(compressed_file.read()))
 
     def save_decompressed(self, string):
         with open(self.filename + "_decompressed.txt", "w", encoding="utf-8") as decompressed_file:
