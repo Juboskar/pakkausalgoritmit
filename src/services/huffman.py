@@ -24,9 +24,9 @@ class HuffmanCompressor:
     "Huffman pakkauksen toteuttava luokka"
 
     def __init__(self):
-        self.__tree = None
+        self.tree = None
 
-    def __build_tree(self, string: str):
+    def build_tree(self, string: str):
         "rakentaa huffman-puun"
         count = {}
         for i in string:
@@ -36,14 +36,14 @@ class HuffmanCompressor:
             min_node_1 = trees.pop(trees.index(min(trees)))
             min_node_2 = trees.pop(trees.index(min(trees)))
             trees.append(Node(None, min_node_1.value + min_node_2.value, min_node_1, min_node_2))
-        self.__tree = trees[0]
+        self.tree = trees[0]
 
-    def __calculate_bit_values(self):
+    def calculate_bit_values(self):
         "etsii merkkien huffman-koodatut bittiarvot ja palauttaa sanakirjana"
         bit_values = {}
 
         bits = ""
-        node = self.__tree
+        node = self.tree
 
         def recursively_check_codes(tree_node, bit_string):
             if tree_node.symbol is not None:
@@ -57,8 +57,8 @@ class HuffmanCompressor:
 
     def compress(self, string: str):
         "pakkaa huffman algoritmilla"
-        self.__build_tree(string)
-        values = self.__calculate_bit_values()
+        self.build_tree(string)
+        values = self.calculate_bit_values()
 
         binary = ''.join([values[i] for i in string])
         n = len(binary)
