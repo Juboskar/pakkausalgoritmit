@@ -69,9 +69,9 @@ class HuffmanCompressor:
             integer_values.append(int(binary[i:i + 8], 2))
 
         encoded_values = bytearray(str(values).encode('ascii'))
-        x = len(encoded_values).to_bytes(4, 'big')
-        print(x + bytearray(str(values).encode('ascii')) + bytearray(integer_values))
-        return x + bytearray(str(values).encode('ascii')) + bytearray(integer_values)
+        header = len(encoded_values).to_bytes(4, 'big')
+        print(header + bytearray(str(values).encode('ascii')) + bytearray(integer_values))
+        return header + bytearray(str(values).encode('ascii')) + bytearray(integer_values)
 
 
 class HuffmanDecompressor:
@@ -80,26 +80,29 @@ class HuffmanDecompressor:
     def __init__(self):
         self.values_length = None
 
-    def __calculate_values(self, bytes_array: bytearray):
-        return json.loads(''.join(map(chr, bytes_array[4:self.values_length + 4])).replace("\'", "\""))
+    def calculate_values(self, bytes_array: bytearray):
+        "etsii pakatusta jonosta huffman-puun ja palauttaa sanakirjana"
+        return json.loads(''.join(map(chr, bytes_array[4:self.values_length + 4]))
+                          .replace("\'", "\""))
 
     def decompress(self, bytes_array: bytearray):
         "purkaa huffman algoritmilla pakatun tekstin"
         self.values_length = int.from_bytes(bytes_array[0:4], 'big')
-        values = self.__calculate_values(bytes_array)
+        values = self.calculate_values(bytes_array)
 
         bytes_int_values = list(bytes_array)
         off = bytes_int_values[self.values_length + 4]
-        s = "".join(map(lambda x: "{0:b}".format(x).zfill(8), bytes_int_values[self.values_length + 5:]))
+        binary = "".join(map(lambda x: "{0:b}".format(x).zfill(8),  # pylint: disable=C0209
+                             bytes_int_values[self.values_length + 5:]))
 
-        binary = s if off == 0 else s[:-off]  # en ymmärrä miten s[:-0] toimii
+        binary_string = binary if off == 0 else binary[:-off]  # en ymmärrä miten s[:-0] toimii
 
         string = ''
-        c = ''
-        for i in binary:
-            c += i
-            if c in values.values():
-                string += list(values.keys())[list(values.values()).index(c)]
-                c = ''
+        binary_value = ''
+        for i in binary_string:
+            binary_value += i
+            if binary_value in values.values():
+                string += list(values.keys())[list(values.values()).index(binary_value)]
+                binary_value = ''
 
         return string

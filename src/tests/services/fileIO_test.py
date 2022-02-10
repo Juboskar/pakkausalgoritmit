@@ -1,5 +1,5 @@
 import unittest
-from services.fileIO import FileIO
+from services.file_io import FileIO
 
 
 class TestCompressor(unittest.TestCase):
