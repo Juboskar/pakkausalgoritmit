@@ -24,7 +24,8 @@ class Compressor:
         if selected_algorithm == "lz":
             self.lempel_ziv.compress(data)
         elif selected_algorithm == "huff":
-            self.file_io.write_bin(self.filename, self.huff.compress(data))
+            print(self.huff.compress(data))
+            self.file_io.write(self.filename + "_huffman_compressed.bin", "wb", self.huff.compress(data))
 
     def decompress_file(self, compressed, selected_algorithm):
         self.filename = compressed
@@ -34,8 +35,4 @@ class Compressor:
         if selected_algorithm == "lz":
             self.lempel_ziv.decompress(data)
         elif selected_algorithm == "huff":
-            self.file_io.write(self.filename, self.huff_decompressor.decompress(data))
-
-    def save_decompressed(self, string):
-        with open(self.filename + "_decompressed.txt", "w", encoding="utf-8") as decompressed_file:
-            decompressed_file.write(string)
+            self.file_io.write(self.filename + "_huffman_decompressed.txt", "w", self.huff_decompressor.decompress(data))

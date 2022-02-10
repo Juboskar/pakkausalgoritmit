@@ -6,10 +6,6 @@ class FileIO:
         with open(*args, **kwargs) as rfile:
             return rfile.read()
 
-    def write(self, filename, data):
-        with open(filename + "_huffman_decompressed.txt", "w") as decompressed:
+    def write(self, filename, write_type, data):
+        with open(filename, write_type) as decompressed:
             decompressed.write(data)
-
-    def write_bin(self, filename, data):
-        with open(filename + "_huffman_compressed.bin", "wb") as compressed:
-            compressed.write(data)
