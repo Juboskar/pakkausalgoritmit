@@ -1,8 +1,13 @@
 "Lempel-Ziv -algoritmin toteuttava koodi"
+
+
 class LzAlgorithm:
     "Lempel-Ziv -algoritmin toteuttava luokka"
 
     def __init__(self):
+        pass
+
+    def init_dictionary(self, string):
         pass
 
     def compress(self, string: str):
