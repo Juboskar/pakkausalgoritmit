@@ -30,7 +30,9 @@ class LzAlgorithm:
 
         encoded_values = bytearray(str(initial).encode('ascii'))
         header = len(encoded_values).to_bytes(4, 'big')
+
         return header + bytearray(str(initial).encode('ascii')) + bytearray(output)
+        # fixme output indexit menee tod näk yli byten
 
     def calculate_values(self, bytes_array: bytearray, values_length):  # sama kun huffmanin kanssa, voisi yhdistää
         """palauttaa sanakirjan"""
@@ -47,7 +49,18 @@ class LzAlgorithm:
         bytes_int_values = list(bytes_array)
         print(bytes_int_values[values_length + 4:])
         s = ''
+        output = values[0]
+        for i in bytes_int_values[values_length + 4:]:
+            print(" - ", i)
+            c = values[i]
+            if s + c in values:
+                s += c
+            else:
+                values.append(s + c)
+                s = c
+                output += s
 
         print(values)
 
-        return "HELLO"
+        print(output)
+        return output
