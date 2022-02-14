@@ -11,26 +11,26 @@ class LzAlgorithm:
 
     def compress(self, string: str):
         "pakkaa lempel-ziv algoritmilla"
-        initial_dict = {c: list(set(string)).index(c) for c in set(string)}
-        string_dict = initial_dict.copy()
+        initial = list(set(string))
+        string_list = initial.copy()
 
         output = []
         s = ''
         for c in string:
-            if s + c in string_dict.keys():
+            if s + c in string_list:
                 s += c
             else:
-                output.append(string_dict[s])
-                string_dict[s + c] = len(string_dict)
+                output.append(string_list.index(s))
+                string_list.append(s + c)
                 s = c
-        output.append(string_dict[s])
-        print(initial_dict)
-        print(string_dict)
+        output.append(string_list.index(s))
+        print(initial)
+        print(string_list)
         print(output)
 
-        encoded_values = bytearray(str(initial_dict).encode('ascii'))
+        encoded_values = bytearray(str(initial).encode('ascii'))
         header = len(encoded_values).to_bytes(4, 'big')
-        return header + bytearray(str(initial_dict).encode('ascii')) + bytearray(output)
+        return header + bytearray(str(initial).encode('ascii')) + bytearray(output)
 
     def calculate_values(self, bytes_array: bytearray, values_length):  # sama kun huffmanin kanssa, voisi yhdistää
         """palauttaa sanakirjan"""
@@ -47,7 +47,6 @@ class LzAlgorithm:
         bytes_int_values = list(bytes_array)
         print(bytes_int_values[values_length + 4:])
         s = ''
-        
 
         print(values)
 
