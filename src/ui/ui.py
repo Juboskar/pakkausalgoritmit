@@ -19,7 +19,7 @@ class UI:
         btn2 = ttk.Button(self._root, text='pakkaa (lempel-ziv)', command=self.compress_lz_action)
         btn3 = ttk.Button(self._root, text='pakkaa (huffman)', command=self.compress_huff_action)
         label2 = ttk.Label(master=self._root, textvariable=self.filename)
-        btn4 = ttk.Button(self._root, text='pura (lempel-ziv)', command=self.compress_lz_action)
+        btn4 = ttk.Button(self._root, text='pura (lempel-ziv)', command=self.decompress_lz_action)
         btn5 = ttk.Button(self._root, text='pura (huffman)', command=self.decompress_huff_action)
 
         label1.pack()

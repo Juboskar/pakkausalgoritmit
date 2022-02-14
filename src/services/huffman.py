@@ -74,7 +74,7 @@ class HuffmanCompressor:
 
 
 class HuffmanDecompressor:
-    "Huffman -algoritmin toteuttava luokka"
+    "Huffman purkamisen toteuttava luokka"
 
     def __init__(self):
         self.values_length = None
