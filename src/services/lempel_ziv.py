@@ -12,8 +12,6 @@ class LzAlgorithm:
         string_dict = {c: list(set(string)).index(c) for c in set(string)}
         print(string_dict)
 
-        string_dict = {'a':0, 'b':1, 'd':2, 'n':3, '_':4}
-
         output = []
         s = ''
         for c in string:
