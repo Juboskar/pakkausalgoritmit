@@ -70,7 +70,6 @@ class HuffmanCompressor:
 
         encoded_values = bytearray(str(values).encode('ascii'))
         header = len(encoded_values).to_bytes(4, 'big')
-        print(header + bytearray(str(values).encode('ascii')) + bytearray(integer_values))
         return header + bytearray(str(values).encode('ascii')) + bytearray(integer_values)
 
 
