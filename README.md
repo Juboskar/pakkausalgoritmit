@@ -16,4 +16,4 @@
 
 [Viikko 3](https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/viikkoraportti_3.md)
 
-[Viikko 3](https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/viikkoraportti_4.md)
+[Viikko 4](https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/viikkoraportti_4.md)
