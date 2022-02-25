@@ -4,7 +4,7 @@ import json
 from services.utilities import list_string_to_list
 
 
-class LzAlgorithm:
+class LzCompressor:
     "Lempel-Ziv -algoritmin toteuttava luokka"  # todo refaktoroi järkevämmäksi
 
     def __init__(self):
@@ -12,7 +12,7 @@ class LzAlgorithm:
 
     def compress(self, string: str):
         "pakkaa lempel-ziv algoritmilla"
-        initial = list(set(string))
+        initial = sorted(list(set(string)))  # sorted testejä varten
         string_list = initial.copy()
 
         output = []
@@ -35,6 +35,13 @@ class LzAlgorithm:
             arr += i
         return arr
 
+
+class LzDecompressor:
+    "Lempel-Ziv -algoritmin toteuttava luokka"  # todo refaktoroi järkevämmäksi
+
+    def __init__(self):
+        pass
+
     def decompress(self, bytes_array: str):
         "purkaa lempel-ziv algoritmilla pakatun tekstin"
         values_length = int.from_bytes(bytes_array[0:4], 'big')
@@ -44,7 +51,7 @@ class LzAlgorithm:
 
         bytes_int_values = list(bytes_array)
 
-        x = bytes_int_values[0:]
+        x = bytes_int_values
 
         b = []
         i = values_length + 4
@@ -56,7 +63,7 @@ class LzAlgorithm:
         c = values[b.pop(0)]
         output = c
         for i in b:
-            if i <= len(values):
+            if i < len(values):
                 s = values[i]
             else:
                 s = c + c[0]

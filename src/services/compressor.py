@@ -1,15 +1,16 @@
 "Tekstitiedostot merkkijonona algoritmeille siirtävä koodi"
 from services.huffman import HuffmanCompressor, HuffmanDecompressor
-from services.lempel_ziv import LzAlgorithm
+from services.lempel_ziv import LzCompressor, LzDecompressor
 from services.file_io import FileIO
 
 
 class Compressor:
     "Tekstitiedostot merkkijonona algoritmeille siirtävä luokka"
 
-    def __init__(self, lempel_ziv=LzAlgorithm(), huff=HuffmanCompressor(),
+    def __init__(self, lz=LzCompressor(), lz_decompressor=LzDecompressor(), huff=HuffmanCompressor(),
                  huff_decompressor=HuffmanDecompressor(), file_io=FileIO()):
-        self.lempel_ziv = lempel_ziv
+        self.lz = lz
+        self.lz_decompressor = lz_decompressor
         self.huff = huff
         self.huff_decompressor = huff_decompressor
         self.filename = None
@@ -22,7 +23,7 @@ class Compressor:
 
         if selected_algorithm == "lz":
             self.file_io.write(self.filename + "_lz_compressed.bin", "wb",
-                               self.lempel_ziv.compress(data))
+                               self.lz.compress(data))
         elif selected_algorithm == "huff":
             self.file_io.write(self.filename + "_huffman_compressed.bin", "wb",
                                self.huff.compress(data))
@@ -33,7 +34,7 @@ class Compressor:
         data = self.file_io.read(self.filename, "rb")
         if selected_algorithm == "lz":
             self.file_io.write(self.filename + "_lz_decompressed.txt", "w",
-                               self.lempel_ziv.decompress(data))
+                               self.lz_decompressor.decompress(data))
         elif selected_algorithm == "huff":
             self.file_io.write(self.filename + "_huffman_decompressed.txt", "w",
                                self.huff_decompressor.decompress(data))
