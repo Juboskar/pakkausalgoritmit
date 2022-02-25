@@ -1,5 +1,6 @@
 "Huffman-algoritmin toteuttava koodi"
 import json
+from services.utilities import list_string_to_list
 
 
 class Node:
@@ -79,15 +80,10 @@ class HuffmanDecompressor:
     def __init__(self):
         self.values_length = None
 
-    def calculate_values(self, bytes_array: bytearray):
-        "etsii pakatusta jonosta huffman-puun ja palauttaa sanakirjana"
-        return json.loads(''.join(map(chr, bytes_array[4:self.values_length + 4]))
-                          .replace("\'", "\""))
-
     def decompress(self, bytes_array: bytearray):
         "purkaa huffman algoritmilla pakatun tekstin"
         self.values_length = int.from_bytes(bytes_array[0:4], 'big')
-        values = self.calculate_values(bytes_array)
+        values = list_string_to_list(bytes_array[4:self.values_length + 4])
 
         bytes_int_values = list(bytes_array)
         off = bytes_int_values[self.values_length + 4]

@@ -1,6 +1,7 @@
 "Lempel-Ziv -algoritmin toteuttava koodi"
 
 import json
+from services.utilities import list_string_to_list
 
 
 class LzAlgorithm:
@@ -24,44 +25,43 @@ class LzAlgorithm:
                 string_list.append(s + c)
                 s = c
         output.append(string_list.index(s))
-        print(initial)
-        print(string_list)
-        print(output)
 
         encoded_values = bytearray(str(initial).encode('ascii'))
         header = len(encoded_values).to_bytes(4, 'big')
 
-        return header + bytearray(str(initial).encode('ascii')) + bytearray(output)
-        # fixme output indexit menee tod näk yli byten
-
-    def calculate_values(self, bytes_array: bytearray, values_length):  # sama kun huffmanin kanssa, voisi yhdistää
-        """palauttaa sanakirjan"""
-
-        return json.loads(''.join(map(chr, bytes_array[4:values_length + 4]))
-                          .replace("\'", "\""))
+        arr = header + bytearray(str(initial).encode('ascii'))
+        o = [i.to_bytes(2, byteorder='big') for i in output]
+        for i in o:
+            arr += i
+        return arr
 
     def decompress(self, bytes_array: str):
         "purkaa lempel-ziv algoritmilla pakatun tekstin"
-        print(bytes_array)
         values_length = int.from_bytes(bytes_array[0:4], 'big')
-        values = self.calculate_values(bytes_array, values_length)
-        print(values)
+        values = list_string_to_list(bytes_array[4:values_length + 4])
+
+        # todo tääl vois vähän uudelleennimetä muuttujia ja pilkkoo pienempiin metodeihin
+
         bytes_int_values = list(bytes_array)
-        print(bytes_int_values[values_length + 4:])
-        s = ''
-        output = ''
-        for i in bytes_int_values[values_length + 4:]:
-            print(" - ", i)
-            c = values[i]
-            if s + c in values:
-                s += c
+
+        x = bytes_int_values[0:]
+
+        b = []
+        i = values_length + 4
+        while i < len(x):
+            b.append(int.from_bytes(bytes_array[i:i + 2], 'big'))
+            i += 2
+        print(b)
+
+        c = values[b.pop(0)]
+        output = c
+        for i in b:
+            if i <= len(values):
+                s = values[i]
             else:
-                output += s
-                values.append(s + c)
-                s = c
-        output += s
+                s = c + c[0]
+            output += s
+            values.append(c + s[0])
+            c = s
 
-        print(values)
-
-        print(output)
         return output
