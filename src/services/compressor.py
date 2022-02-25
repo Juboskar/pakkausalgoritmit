@@ -1,14 +1,15 @@
-"Tekstitiedostot merkkijonona algoritmeille siirtävä koodi"
+"""Code for giving text file contents to compressing and decompressing algorithms"""
 from services.huffman import HuffmanCompressor, HuffmanDecompressor
 from services.lempel_ziv import LzCompressor, LzDecompressor
 from services.file_io import FileIO
 
 
 class Compressor:
-    "Tekstitiedostot merkkijonona algoritmeille siirtävä luokka"
+    """Gives text file contents to compressing and decompressing algorithms"""
 
-    def __init__(self, lz=LzCompressor(), lz_decompressor=LzDecompressor(), huff=HuffmanCompressor(),
-                 huff_decompressor=HuffmanDecompressor(), file_io=FileIO()):
+    def __init__(self, lz=LzCompressor(), lz_decompressor=LzDecompressor(),  # pylint: disable=R0913
+                 huff=HuffmanCompressor(), huff_decompressor=HuffmanDecompressor(),
+                 file_io=FileIO()):
         self.lz = lz
         self.lz_decompressor = lz_decompressor
         self.huff = huff
@@ -17,7 +18,7 @@ class Compressor:
         self.file_io = file_io
 
     def compress_file(self, uncompressed, selected_algorithm):
-        """Avaa tiedoston ja pakkaa sisällön binääritiedostoon"""
+        """Opens file and saves compressed content"""
         self.filename = uncompressed
         data = self.file_io.read(self.filename, "r", encoding="utf-8")
 
@@ -29,7 +30,7 @@ class Compressor:
                                self.huff.compress(data))
 
     def decompress_file(self, compressed, selected_algorithm):
-        """Avaa binääritiedoston ja purkaa sisällön tekstitiedostoon"""
+        """Opens file and saves decompressed content"""
         self.filename = compressed
         data = self.file_io.read(self.filename, "rb")
         if selected_algorithm == "lz":

@@ -1,22 +1,20 @@
-"lukee ja kirjoittaa tiedostoja"
+"""Reads and writes files"""
 
 
 class FileIO:
-    "tiedoston lukemisen ja kirjoittamisen toteuttava luokka"
+    """Reads and writes files"""
 
     def __init__(self):
         pass
 
     @staticmethod
     def read(*args, **kwargs):
-        """saa parametreina tiedoston nimen, lukutyypin ja mahdollisen koodauksen lukee
-        ja palauttaa tiedoston sisällön"""
+        """Gets file name, type and encoding and returns file content"""
         with open(*args, **kwargs) as rfile:  # pylint: disable=W1514
             return rfile.read()
 
     @staticmethod
     def write(filename, write_type, data):
-        """saa parametreina tiedoston nimen, kirjoitustyypin ja kirjoitettavan datan ja
-        kirjoittaa tiedostoon"""
+        """Gets file name, type and adta and writes content to file"""
         with open(filename, write_type) as decompressed:  # pylint: disable=W1514
             decompressed.write(data)

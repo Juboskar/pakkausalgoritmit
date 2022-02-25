@@ -1,10 +1,9 @@
-"Huffman-algoritmin toteuttava koodi"
-import json
-from services.utilities import list_string_to_list
+"Huffman algorithm"
+from services.utilities import list_bytes_to_list
 
 
 class Node:
-    "Huffman-puun solmun totetuttava luokka"
+    """Node for Huffman-tree"""
 
     def __init__(self, symbol, value, left, right):
         self.symbol = symbol
@@ -13,22 +12,22 @@ class Node:
         self.right = right
 
     def __lt__(self, comparable):
-        "pienimmän arvon omaavan solmun löytämistä varten"
+        """Method for finding node with smallest value"""
         return self.value < comparable.value
 
     def __str__(self):
-        "debuggaamista helpottava str muoto"
+        """String representation for debugging"""
         return f"Node: {self.symbol}: {self.value}, ({self.left}, {self.right})"
 
 
 class HuffmanCompressor:
-    "Huffman pakkauksen toteuttava luokka"
+    """Class for Huffman compression"""
 
     def __init__(self):
         self.tree = None
 
     def build_tree(self, string: str):
-        "rakentaa huffman-puun"
+        """Builds Huffman tree"""
         count = {}
         for i in string:
             count[i] = 1 if i not in count else count[i] + 1
@@ -40,9 +39,8 @@ class HuffmanCompressor:
         self.tree = trees[0]
 
     def calculate_bit_values(self):
-        "etsii merkkien huffman-koodatut bittiarvot ja palauttaa sanakirjana"
+        """Returns decoding values as dictionary from Huffman tree"""
         bit_values = {}
-
         bits = ""
         node = self.tree
 
@@ -57,7 +55,7 @@ class HuffmanCompressor:
         return bit_values
 
     def compress(self, string: str):
-        "pakkaa huffman algoritmilla"
+        """Algorithm for Huffman compressing"""
         self.build_tree(string)
         values = self.calculate_bit_values()
 
@@ -75,22 +73,28 @@ class HuffmanCompressor:
 
 
 class HuffmanDecompressor:
-    "Huffman purkamisen toteuttava luokka"
+    """Class for Huffman decompressing"""
 
     def __init__(self):
         self.values_length = None
+        self.bytes_int_values = []
+
+    def bytes_int_values_to_binary(self):
+        """returns bytes values as binary string"""
+        return "".join(map(lambda x: "{0:b}".format(x).zfill(8),  # pylint: disable=C0209
+                           self.bytes_int_values[self.values_length + 5:]))
 
     def decompress(self, bytes_array: bytearray):
-        "purkaa huffman algoritmilla pakatun tekstin"
+        """Algorithm for Huffman decompressing"""
         self.values_length = int.from_bytes(bytes_array[0:4], 'big')
-        values = list_string_to_list(bytes_array[4:self.values_length + 4])
+        values = list_bytes_to_list(bytes_array[4:self.values_length + 4])
 
-        bytes_int_values = list(bytes_array)
-        off = bytes_int_values[self.values_length + 4]
-        binary = "".join(map(lambda x: "{0:b}".format(x).zfill(8),  # pylint: disable=C0209
-                             bytes_int_values[self.values_length + 5:]))
+        self.bytes_int_values = list(bytes_array)
 
-        binary_string = binary if off == 0 else binary[:-off]  # en ymmärrä miten s[:-0] toimii
+        off = self.bytes_int_values[self.values_length + 4]
+        binary = self.bytes_int_values_to_binary()
+
+        binary_string = binary if off == 0 else binary[:-off]
 
         string = ''
         binary_value = ''

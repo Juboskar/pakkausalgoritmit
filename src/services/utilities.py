@@ -1,6 +1,8 @@
+"""Utility functions"""
 import json
 
 
-def list_string_to_list(bytes_array: bytearray):
+def list_bytes_to_list(bytes_array):
+    """changes string or byetarray to list"""
     return json.loads(''.join(map(chr, bytes_array))
                       .replace("\'", "\""))
