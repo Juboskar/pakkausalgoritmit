@@ -5,7 +5,7 @@ Aikaa käytetty 8 tuntia, josta 2 tuntia vertaisarviota.
 Viikolla 6 viimeistelty Lempel-Ziv, eli sovellus on nyt viimein 
 ydintoiminnoiltaan periaatteessa täysin valmis. Seuraavalla viikolla tarkastelussa, 
 saisiko luokkien rakennetta hieman refaktoroitua järkevämmäksi ja 
-olisiko esimerkiksi syytä piiottaa private metodeiksi osa metodeista ja muutenkin
+olisiko esimerkiksi syytä piilottaa private metodeiksi osa metodeista ja muutenkin
 vähän yleistä koodin laatua ja käytäntöjä voisi höylätä.
 
 Lempel-Ziv tallettaa tällä hetkellä tiedostoon mukaan listan 
