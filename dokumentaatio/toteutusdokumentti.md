@@ -2,7 +2,7 @@
 
 ## Ohjelman yleisrakenne
 
-Ohjelman arkkitehtuurinen rakenne on soilta linjoiltaan seuraava. Tarkemmin luokkia, metodeita ja parametreja kannattaa tutkia suoraan lähdekoodista.
+Ohjelman arkkitehtuurinen rakenne on isoilta linjoiltaan seuraava. Tarkemmin luokkia, metodeita ja parametreja kannattaa tutkia suoraan lähdekoodista.
 
 ![Kaavio](https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/kuvat/arkkitehtuuri.png)
 
