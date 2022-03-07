@@ -17,5 +17,5 @@ päivittyy
 - https://engineering.purdue.edu/ece264/17au/hw/HW13?alt=huffman [luettu 1.2.2022-10.2.2022]
 - https://en.wikipedia.org/wiki/Huffman_coding [luettu 1.2.2022-10.2.2022]
 - https://www.youtube.com/watch?v=JsTptu56GM8 [luettu 1.2.2022-10.2.2022]
-- https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch
-- https://en.wikipedia.org/wiki/LZ77_and_LZ78
+- https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch [luettu 28.2.2022-10.2.2022]
+- https://en.wikipedia.org/wiki/LZ77_and_LZ78 [luettu 28.2.2022-10.2.2022]
