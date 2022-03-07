@@ -2,7 +2,7 @@
 
 ## Ohjelman yleisrakenne
 
-päivittyy
+![Kaavio](https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/kuvat/rakennekaavio.png)
 
 ## Algritmien suorituskyvyn vertailu
 
