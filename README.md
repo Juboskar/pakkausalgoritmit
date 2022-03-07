@@ -8,6 +8,10 @@
 
 [Testausdokumentti](https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/testausdokumentti.md)
 
+[Toteutusdokumentti](https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/toteutusdokumentti.md)
+
+[Käyttöohje](https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/kayttoohje.md)
+
 ## Viikkoraportit
 
 [Viikko 1](https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/viikkoraportti_1.md)
