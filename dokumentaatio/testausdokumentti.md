@@ -7,6 +7,6 @@
 ## Suorituskyky
 
 Suorituskykyä testattu manuaalisesti erikokoisilla ja pituisilla tekstitiedostoilla. 
-Testitiedostojen sisältöjen syötteenä on käytetty muun muassa [Tätä Lorem Ipsum -generaattoria](https://lipsum.com/)
+Testitiedostojen sisältöjen syötteenä on käytetty muun muassa [tätä Lorem Ipsum -generaattoria](https://lipsum.com/).
 
-Suorituskykyraportti löytyy [toteutusdokumentista](https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/toteutusdokumentti.md)
+Suorituskykyraportti löytyy [toteutusdokumentista](https://github.com/Juboskar/pakkausalgoritmit/blob/main/dokumentaatio/toteutusdokumentti.md).
