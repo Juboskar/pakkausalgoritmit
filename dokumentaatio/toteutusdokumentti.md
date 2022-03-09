@@ -10,7 +10,9 @@ Käyttäjän kanssa kommunikointiin on toteutettu graafinen käyttöliittymä (U
 
 ## Algritmien suorituskyvyn vertailu
 
-päivittyy
+67kt kokoinen tiedosto pakkautui 36kt kokoiseksi Huffmanilla ja 26kt kokoiseksi Lempel-Zivillä. Lempel-Ziv pakkaa kuitenkin käytettäessä hitaammin siten, että käyttäjä joutuu pari sekuntia odottelemaan, kun taas Lempel-Ziv pakkaa käyttäjän näkökulmasta ilman viivettä. 
+
+Lisää testausta ja tilastointia on vielä työn alla.
 
 ## Käytettyjä lähteitä:
 
