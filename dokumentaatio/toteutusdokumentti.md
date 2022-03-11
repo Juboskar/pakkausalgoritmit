@@ -12,8 +12,6 @@ Käyttäjän kanssa kommunikointiin on toteutettu graafinen käyttöliittymä (U
 
 67kt kokoinen tiedosto pakkautui 36kt kokoiseksi Huffmanilla ja 26kt kokoiseksi Lempel-Zivillä. Lempel-Ziv pakkaa kuitenkin käytettäessä hitaammin siten, että käyttäjä joutuu pari sekuntia odottelemaan, kun taas Lempel-Ziv pakkaa käyttäjän näkökulmasta ilman viivettä. 
 
-Lisää testausta ja tilastointia on vielä työn alla.
-
 ## Käytettyjä lähteitä:
 
 - https://engineering.purdue.edu/ece264/17au/hw/HW13?alt=huffman [luettu 1.2.2022-10.2.2022]
